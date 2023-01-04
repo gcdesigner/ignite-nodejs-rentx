@@ -1,13 +1,23 @@
-import { createConnection, getConnectionOptions } from "typeorm";
+import { DataSource } from "typeorm";
 
-interface IOptions {
-  host: string;
-}
+import { Category } from "../modules/cars/entities/Category";
+import { CreateCategories1672793250607 } from "./migrations/1672793250607-CreateCategories";
 
-getConnectionOptions().then((options) => {
-  const newOptions = options as IOptions;
-  newOptions.host = "database_ignite"; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
-  createConnection({
-    ...options,
-  });
+export const appDataSource = new DataSource({
+  type: "postgres",
+  host: "database",
+  port: 5432,
+  username: "docker",
+  password: "ignite",
+  database: "rentx",
+  synchronize: true,
+  logging: true,
+  entities: [Category],
+  subscribers: [],
+  migrations: [CreateCategories1672793250607],
 });
+
+appDataSource
+  .initialize()
+  .then(() => console.log("Database initialized!"))
+  .catch((err) => console.log("Database error", err));
