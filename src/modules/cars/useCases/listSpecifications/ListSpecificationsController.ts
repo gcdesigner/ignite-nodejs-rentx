@@ -7,12 +7,16 @@ class ListSpecificationsCotroller {
   // eslint-disable-next-line prettier/prettier
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const listSpecificationsUseCase = container.resolve(
-      ListSpecificationsUseCase
-    );
-    const all = await listSpecificationsUseCase.execute();
+    try {
+      const listSpecificationsUseCase = container.resolve(
+        ListSpecificationsUseCase
+      );
+      const all = await listSpecificationsUseCase.execute();
 
-    return response.json(all);
+      return response.json(all);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   }
 }
 

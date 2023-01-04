@@ -6,16 +6,20 @@ import { CreateSpecificationUseCase } from "./CreateSpecificationUseCase";
 class CreateSpecificationController {
   // eslint-disable-next-line prettier/prettier
 
-  handle(request: Request, response: Response): Response {
-    const { name, description } = request.body;
+  async handle(request: Request, response: Response): Promise<Response> {
+    try {
+      const { name, description } = request.body;
 
-    const createSpecificationUseCase = container.resolve(
-      CreateSpecificationUseCase
-    );
+      const createSpecificationUseCase = container.resolve(
+        CreateSpecificationUseCase
+      );
 
-    createSpecificationUseCase.execute({ name, description });
+      await createSpecificationUseCase.execute({ name, description });
 
-    return response.status(202).send();
+      return response.status(202).send();
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   }
 }
 

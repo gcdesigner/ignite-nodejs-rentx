@@ -7,12 +7,16 @@ class ImportCategoryController {
   // eslint-disable-next-line prettier/prettier
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
-    const { file } = request;
+    try {
+      const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
+      const { file } = request;
 
-    await importCategoryUseCase.execute(file);
+      await importCategoryUseCase.execute(file);
 
-    return response.send();
+      return response.send();
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   }
 }
 
