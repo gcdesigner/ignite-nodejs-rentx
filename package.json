@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
+    "typeorm": "ts-node-dev -r ./node_modules/typeorm/cli.js src/database/index.ts -p"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +18,7 @@
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.6.0",
+    "tsyringe": "^4.7.0",
     "typeorm": "^0.3.11",
     "uuid": "^9.0.0"
   },
