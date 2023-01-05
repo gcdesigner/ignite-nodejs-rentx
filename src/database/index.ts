@@ -1,9 +1,12 @@
 import { DataSource } from "typeorm";
 
+import { User } from "../modules/accounts/entities/User";
 import { Category } from "../modules/cars/entities/Category";
 import { Specification } from "../modules/cars/entities/Specification";
 import { CreateCategories1672793250607 } from "./migrations/1672793250607-CreateCategories";
 import { CreateSpecifications1672846730011 } from "./migrations/1672846730011-CreateSpecifications";
+import { CreateUsers1672875456626 } from "./migrations/1672875456626-CreateUsers";
+import { AlterTableCreateUsers1672880296544 } from "./migrations/1672880296544-AlterTableCreateUsers";
 
 const appDataSource = new DataSource({
   type: "postgres",
@@ -13,12 +16,14 @@ const appDataSource = new DataSource({
   database: "rentx",
   synchronize: true,
   logging: true,
-  entities: [Category, Specification],
+  entities: [Category, Specification, User],
   subscribers: [],
   migrationsRun: true,
   migrations: [
     CreateCategories1672793250607,
     CreateSpecifications1672846730011,
+    CreateUsers1672875456626,
+    AlterTableCreateUsers1672880296544,
   ],
 });
 
