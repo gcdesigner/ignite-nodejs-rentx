@@ -15,7 +15,7 @@ class ListSpecificationsCotroller {
 
       return response.json(all);
     } catch (error) {
-      return response.status(400).json({ error: error.message });
+      return response.status(400).json({ message: error.message });
     }
   }
 }
