@@ -4,7 +4,7 @@ import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 import "../../container";
 
-import { AppError } from "@errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 import { createConection } from "@shared/infra/typeorm/index";
 
 import swaggerFile from "../../../swagger.json";
