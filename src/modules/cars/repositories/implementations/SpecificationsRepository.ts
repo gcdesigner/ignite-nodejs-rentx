@@ -1,7 +1,8 @@
 import { Repository } from "typeorm";
 
-import { appDataSource } from "../../../../database";
-import { Specification } from "../../entities/Specification";
+import { appDataSource } from "@database/index";
+import { Specification } from "@modules/cars/entities/Specification";
+
 import {
   ISpecificationDTO,
   ISpecificationsRepository,

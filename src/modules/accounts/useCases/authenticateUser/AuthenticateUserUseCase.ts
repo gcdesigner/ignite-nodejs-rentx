@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { inject, injectable } from "tsyringe";
+import { injectable, inject } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { AppError } from "@errors/AppError";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+
 
 interface IRequest {
   email: string;
