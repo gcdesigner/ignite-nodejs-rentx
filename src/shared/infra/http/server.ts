@@ -2,12 +2,13 @@ import "reflect-metadata";
 import express, { NextFunction, Response, Request } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
-import "./shared/container";
+import "../../container";
 
-import { createConection } from "./database";
-import { AppError } from "./errors/AppError";
+import { AppError } from "@errors/AppError";
+import { createConection } from "@shared/infra/typeorm/index";
+
+import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
-import swaggerFile from "./swagger.json";
 
 createConection();
 

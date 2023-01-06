@@ -8,10 +8,10 @@
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
       "@errors/*": ["errors/*"],
-      "@midllewares/*": ["midllewares/*"],
-      "@database/*": ["database/*"],
+      "@middlewares/*": ["shared/infra/http/middlewares/*"],
       "@utils/*": ["utils/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@database/*": ["shared/infra/typeorm/*"]
     },
     "resolveJsonModule": true,
     "outDir": "./dist",

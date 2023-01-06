@@ -1,4 +1,4 @@
-import { User } from "@modules/accounts/entities/User";
+import { User } from "@modules/accounts/infra/entities/User";
 
 import { IUsersRepository, ICreateUserDTO } from "../IUsersRepository";
 

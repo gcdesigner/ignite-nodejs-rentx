@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { MigrationInterface, QueryRunner, TableColumn } from "typeorm";
 
 export class AddColumnAvatarUsersTable1672963034996
