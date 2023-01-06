@@ -21,6 +21,9 @@ class User {
   @Column({ default: false })
   is_admin?: string;
 
+  @Column({ default: null })
+  avatar?: string;
+
   @CreateDateColumn()
   created_at: Date;
 

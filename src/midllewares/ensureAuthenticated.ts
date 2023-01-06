@@ -19,6 +19,7 @@ export async function ensureAuthenticated(
     throw new AppError("No authorization!", 401);
   }
 
+  //[Bearer, 12903j18923n10398n12]
   const [, token] = authorization.split(" ");
 
   try {
@@ -33,6 +34,12 @@ export async function ensureAuthenticated(
     if (!user) {
       throw new AppError("User not found", 401);
     }
+
+    request.user = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
 
     return next();
   } catch (error) {
