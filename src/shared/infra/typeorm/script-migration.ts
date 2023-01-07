@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 
-const command = `npx typeorm migration:create ./src/database/migrations/${process.argv[2]}`;
+const command = `npx typeorm migration:create ./src/shared/infra/typeorm/migrations/${process.argv[4]}`;
 
 (() =>
   exec(command, (error, stdout, stderr) => {

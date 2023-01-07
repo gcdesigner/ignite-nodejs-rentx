@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { inject, injectable } from "tsyringe";
 
-import { UsersRepository } from "@modules/accounts/infra/repositories/UsersRepository";
+import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { deleteFile } from "@utils/file";
 
 interface IRequest {
