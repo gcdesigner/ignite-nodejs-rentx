@@ -39,6 +39,7 @@ export async function ensureAuthenticated(
       id: user.id,
       name: user.name,
       email: user.email,
+      is_admin: user.is_admin,
     };
 
     return next();

@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 
 import { User } from "../../../modules/accounts/infra/typeorm/entities/User";
+import { Car } from "../../../modules/cars/typeorm/entities/Car";
 import { Category } from "../../../modules/cars/typeorm/entities/Category";
 import { Specification } from "../../../modules/cars/typeorm/entities/Specification";
 import { CreateCategories1672793250607 } from "./migrations/1672793250607-CreateCategories";
@@ -18,7 +19,7 @@ const appDataSource = new DataSource({
   database: "rentx",
   synchronize: true,
   logging: true,
-  entities: [Category, Specification, User],
+  entities: [Category, Specification, User, Car],
   subscribers: [],
   migrationsRun: true,
   migrations: [

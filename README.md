@@ -13,13 +13,22 @@
 
 **RF**
 [] Deve ser possível cadastrar um novo carro
-[] Deve ser possível listar todas as categorias
 [] Não deve ser possível cadastrar um carro sem categoria
 
 **RN**
 [] Não deve ser possível cadastrar um carro com uma placa já existente
 [] Não deve ser possível alterar a placa de um carro já cadastrado
 [] O carro deve ser cadastrado sempre com disponibilidade.
+
+- [] Somente um administrador pode cadastrar um carro
+
+# Alterar carro
+
+**RF**
+[] Deve ser possível alterar o cadsatro de um carro
+
+**RN**
+[] Não deve ser possível alterar a placa de um carro já cadastrado
 [] Somente um administrador pode cadastrar um carro
 
 # Listagem de carros
