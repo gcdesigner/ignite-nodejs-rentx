@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 
 import {
   ISpecificationsRepository,
@@ -15,17 +15,20 @@ class SpecificationsRepository implements ISpecificationsRepository {
   }
 
   async list(): Promise<Specification[]> {
-    return this.repository.find();
+    return await this.repository.find();
   }
 
   async create({ name, description }: ISpecificationDTO) {
-    const specification = await this.repository.create({ name, description });
+    const specification = this.repository.create({ name, description });
     this.repository.save(specification);
   }
 
   async findByName(name: string): Promise<Specification> {
-    const specification = this.repository.findOneBy({ name });
-    return specification;
+    return await this.repository.findOneBy({ name });
+  }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    return await this.repository.findBy({ id: In(ids) });
   }
 }
 

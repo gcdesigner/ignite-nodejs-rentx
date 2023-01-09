@@ -5,12 +5,14 @@ import swaggerUi from "swagger-ui-express";
 import "../../container";
 
 import { AppError } from "@shared/errors/AppError";
-import { createConection } from "@shared/infra/typeorm/index";
+import { createConnection } from "@shared/infra/typeorm/index";
 
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
 
-createConection();
+createConnection()
+  .then(() => console.log("Database initialized!"))
+  .catch((err) => console.log("Database error", err));
 
 const app = express();
 app.use(express.json());

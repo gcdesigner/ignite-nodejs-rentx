@@ -36,6 +36,7 @@
 **RF**
 [] Deve ser possível listar todos os carros disponíveis
 [] Deve ser possível listar todos os carros pela categoria
+[] Deve ser possível listar todos os carros pela marca
 [] Deve ser possível listar todos os carros pelo nome do carro
 
 **RN**
