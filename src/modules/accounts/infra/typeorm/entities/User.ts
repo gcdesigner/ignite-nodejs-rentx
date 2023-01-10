@@ -1,9 +1,19 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 @Entity("users")
 class User {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn("uuid")
   id?: string;
 
   @Column()
@@ -24,7 +34,10 @@ class User {
   @Column({ default: null })
   avatar?: string;
 
-  @CreateDateColumn()
+  @OneToMany(() => Rental, (rental) => rental.user)
+  rental: Rental[];
+
+  @CreateDateColumn({ default: new Date() })
   created_at: Date;
 
   constructor() {
