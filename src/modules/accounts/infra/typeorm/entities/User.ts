@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+// import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 @Entity("users")
 class User {
@@ -34,8 +34,8 @@ class User {
   @Column({ default: null })
   avatar?: string;
 
-  @OneToMany(() => Rental, (rental) => rental.user)
-  rental: Rental[];
+  // @OneToMany(() => Rental, (rental) => rental.user)
+  // rental: Rental[];
 
   @CreateDateColumn({ default: new Date() })
   created_at: Date;

@@ -1,29 +1,30 @@
 import dayjs from "dayjs";
 
 import { RentalsRepositoryInMemory } from "@modules/rentals/repositories/in-memory/RentalsRepositoryInMemory";
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
 
 let rentalsRepository: RentalsRepositoryInMemory;
 let useCase: CreateRentalUseCase;
+let dayjsDateProvider: DayjsDateProvider;
 
-const after24hours = dayjs().add(24, "hours").toDate();
 const today = dayjs().toDate();
+const after24hours = dayjs().add(24, "hours").toDate();
 
 describe("Create Rental", () => {
   beforeEach(() => {
     rentalsRepository = new RentalsRepositoryInMemory();
-    useCase = new CreateRentalUseCase(rentalsRepository);
+    dayjsDateProvider = new DayjsDateProvider();
+    useCase = new CreateRentalUseCase(rentalsRepository, dayjsDateProvider);
   });
 
   it("should be able to rental a car", async () => {
     const rental = {
       user_id: "1234",
       car_id: "123456",
-      start_date: today,
-      end_date: after24hours,
-      total: 300,
+      expected_return_date: after24hours,
     };
 
     await useCase.execute(rental);
@@ -36,9 +37,7 @@ describe("Create Rental", () => {
       const rental = {
         user_id: "1234",
         car_id: "123456",
-        start_date: today,
-        end_date: today,
-        total: 300,
+        expected_return_date: today,
       };
 
       await useCase.execute(rental);
@@ -50,17 +49,13 @@ describe("Create Rental", () => {
       await useCase.execute({
         user_id: "1234",
         car_id: "123456",
-        start_date: today,
-        end_date: after24hours,
-        total: 300,
+        expected_return_date: after24hours,
       });
 
       await useCase.execute({
         user_id: "1234",
         car_id: "1234567",
-        start_date: today,
-        end_date: after24hours,
-        total: 300,
+        expected_return_date: after24hours,
       });
     }).rejects.toBeInstanceOf(AppError);
   });
@@ -70,17 +65,13 @@ describe("Create Rental", () => {
       await useCase.execute({
         user_id: "1234",
         car_id: "123456",
-        start_date: today,
-        end_date: after24hours,
-        total: 300,
+        expected_return_date: after24hours,
       });
 
       await useCase.execute({
         user_id: "12345",
         car_id: "123456",
-        start_date: today,
-        end_date: after24hours,
-        total: 300,
+        expected_return_date: after24hours,
       });
     }).rejects.toBeInstanceOf(AppError);
   });

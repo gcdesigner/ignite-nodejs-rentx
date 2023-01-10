@@ -5,19 +5,20 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { User } from "@modules/accounts/infra/typeorm/entities/User";
+// import { User } from "@modules/accounts/infra/typeorm/entities/User";
 
 @Entity("rentals")
 class Rental {
   @PrimaryGeneratedColumn("uuid")
   id?: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
-  user: User;
+  // @ManyToOne(() => User)
+  // @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+  // user: User;
 
   @Column()
   user_id: string;
@@ -25,22 +26,22 @@ class Rental {
   @Column()
   car_id: string;
 
-  @Column()
+  @Column({ default: null })
   total: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: new Date() })
   start_date: Date;
 
-  @CreateDateColumn()
+  @Column({ default: null })
   end_date: Date;
 
   @CreateDateColumn()
   expected_return_date: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: new Date() })
   created_at: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn({ default: new Date() })
   updated_at: Date;
 
   constructor() {
