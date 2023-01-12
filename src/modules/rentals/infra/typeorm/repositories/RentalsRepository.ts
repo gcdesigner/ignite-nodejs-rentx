@@ -1,6 +1,6 @@
 import { IsNull, Repository } from "typeorm";
 
-import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
+import type { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
 import { appDataSource } from "@shared/infra/typeorm";
 

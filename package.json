@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --poll --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "test": "jest",
+    "test": "set NODE_ENV=test&&jest --runInBand --detectOpenHandles",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts",
     "migration:c": "ts-node ./src/shared/infra/typeorm/script-migration.ts -d ./src/shared/infra/typeorm/index.ts",
     "migration:r": "yarn typeorm migration:run",

@@ -1,4 +1,4 @@
-export interface ICreateRentalDTO {
+interface ICreateRentalDTO {
   id?: string;
   user_id: string;
   car_id: string;
@@ -6,3 +6,5 @@ export interface ICreateRentalDTO {
   end_date?: Date;
   total?: number;
 }
+
+export { ICreateRentalDTO };

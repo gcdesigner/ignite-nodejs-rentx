@@ -31,15 +31,13 @@ class CreateRentalUseCase {
 
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id);
 
-    console.log(carUnavailable)
-
     if (carUnavailable) {
       throw new AppError("Car is unavailable!");
     }
 
-    const userAlreadyRentalACar = await this.rentalsRepository.findOpenRentalByUser(user_id)
+    const rentalOpenedToUser = await this.rentalsRepository.findOpenRentalByUser(user_id)
 
-    if (userAlreadyRentalACar) {
+    if (rentalOpenedToUser) {
       throw new AppError("User has already rented a car!");
     }
 
@@ -50,7 +48,7 @@ class CreateRentalUseCase {
       throw new AppError("Rental must be for a minimum of 24 hours!")
     }
 
-    const rental = this.rentalsRepository.create({
+    const rental = await this.rentalsRepository.create({
       car_id,
       user_id,
       expected_return_date

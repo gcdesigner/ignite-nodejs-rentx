@@ -5,11 +5,7 @@ import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { ICarsRepository } from "../ICarsRepository";
 
 class CarsRepositoryInMemory implements ICarsRepository {
-  cars: Car[];
-
-  constructor() {
-    this.cars = [];
-  }
+  cars: Car[] = [];
 
   async list(): Promise<Car[]> {
     return this.cars;
@@ -75,8 +71,8 @@ class CarsRepositoryInMemory implements ICarsRepository {
   }
 
   async updateAvailable(id: string, available: boolean): Promise<void> {
-    const car = this.cars.find((car) => car.id === id);
-    car.available = available;
+    const carIndex = this.cars.findIndex((car) => car.id === id);
+    this.cars[carIndex].available = available;
   }
 }
 

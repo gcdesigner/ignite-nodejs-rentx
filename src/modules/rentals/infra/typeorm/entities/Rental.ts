@@ -35,13 +35,13 @@ class Rental {
   @Column({ default: null })
   total: number;
 
-  @CreateDateColumn({ default: new Date() })
+  @Column({ default: new Date() })
   start_date: Date;
 
   @Column({ default: null })
   end_date: Date;
 
-  @CreateDateColumn()
+  @Column()
   expected_return_date: Date;
 
   @CreateDateColumn({ default: new Date() })
