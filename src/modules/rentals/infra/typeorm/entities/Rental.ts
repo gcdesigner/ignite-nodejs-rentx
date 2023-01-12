@@ -9,6 +9,8 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+import { Car } from "@modules/cars/infra/typeorm/entities/Car";
+
 // import { User } from "@modules/accounts/infra/typeorm/entities/User";
 
 @Entity("rentals")
@@ -22,6 +24,10 @@ class Rental {
 
   @Column()
   user_id: string;
+
+  @ManyToOne(() => Car)
+  @JoinColumn({ name: "car_id", referencedColumnName: "id" })
+  car: Car;
 
   @Column()
   car_id: string;

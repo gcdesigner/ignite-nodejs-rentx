@@ -7,25 +7,22 @@
 **RN** => Regra de negócio
 (Requisitos relacionados as regras de fato - exceções, sucessos)
 
----
-
 # Cadastro de carro
 
 **RF**
-[] Deve ser possível cadastrar um novo carro
-[] Não deve ser possível cadastrar um carro sem categoria
+[x] Deve ser possível cadastrar um novo carro
+[x] Não deve ser possível cadastrar um carro sem categoria
 
 **RN**
-[] Não deve ser possível cadastrar um carro com uma placa já existente
-[] Não deve ser possível alterar a placa de um carro já cadastrado
-[] O carro deve ser cadastrado sempre com disponibilidade.
-
-- [] Somente um administrador pode cadastrar um carro
+[x] Não deve ser possível cadastrar um carro com uma placa já existente
+[x] Não deve ser possível alterar a placa de um carro já cadastrado
+[x] O carro deve ser cadastrado sempre com disponibilidade.
+[x] Somente um administrador pode cadastrar um carro
 
 # Alterar carro
 
 **RF**
-[] Deve ser possível alterar o cadsatro de um carro
+[] Deve ser possível alterar o cadastro de um carro
 
 **RN**
 [] Não deve ser possível alterar a placa de um carro já cadastrado
@@ -72,9 +69,24 @@
 # Aluguel de carro
 
 **RF**
-[] Deve ser possível alugar um carro
+[x] Deve ser possível alugar um carro
 
 **RN**
-[] O aluguel deve ter duração mínima de 24 horas
-[] Não deve ser possível cadastrar um aluguel caso já tenha um aluguel em aberto;
-[] Não deve ser possível alugar um carro já alugado
+[x] O aluguel deve ter duração mínima de 24 horas
+[x] Não deve ser possível cadastrar um aluguel caso já tenha um aluguel em aberto;
+[x] Não deve ser possível alugar um carro já alugado
+[] Ao realizar um aluguel o carro deve ficar indisponível
+
+# Devolução de carro
+
+**RF**
+[] Deve ser possível realizar a devolução de um carro
+
+**RN**
+[] Se o carro for devolvido com menos de 24 horas, deverá ser cobrado uma diária completa
+[] Ao realizar a devolução, o carro deverá ser liberado para outro aluguel
+[] Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel
+[] Ao realizar a devolução, deverá ser calculado o total do aluguel
+[] Caso o horário da devolução seja superior ao horário previsto de entrega, deverá ser cobrado um multa proporcional ao dias de atraso
+[] Caso haja multa, deverá ser somado ao total do aluguel
+[] Usuário deve estar logado na aplicação

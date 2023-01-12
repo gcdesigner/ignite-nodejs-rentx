@@ -10,6 +10,14 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     this.rentals = [];
   }
 
+  async list(): Promise<Rental[]> {
+    return this.rentals;
+  }
+
+  async findByUser(user_id: string): Promise<Rental[]> {
+    return this.rentals.filter((rental) => rental.user_id === user_id);
+  }
+
   async create({
     user_id,
     car_id,
@@ -38,6 +46,10 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     return this.rentals.find(
       (rental) => rental.user_id === user_id && rental.end_date !== null
     );
+  }
+
+  async findById(id: string): Promise<Rental> {
+    return this.rentals.find((rental) => rental.id === id);
   }
 }
 

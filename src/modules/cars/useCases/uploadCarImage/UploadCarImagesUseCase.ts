@@ -2,8 +2,8 @@
 import { inject, injectable } from "tsyringe";
 
 import { ICarsImageDTO } from "@modules/cars/dtos/ICarImageDTO";
-import { CarsImagesRepository } from "@modules/cars/typeorm/repositories/CarsImagesRepository";
-import { CarsRepository } from "@modules/cars/typeorm/repositories/CarsRepository";
+import { CarsImagesRepository } from "@modules/cars/infra/typeorm/repositories/CarsImagesRepository";
+import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository";
 import { deleteFile } from "@utils/file";
 
 @injectable()

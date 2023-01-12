@@ -1,10 +1,10 @@
 import { DataSource } from "typeorm";
 
 import { User } from "../../../modules/accounts/infra/typeorm/entities/User";
-import { Car } from "../../../modules/cars/typeorm/entities/Car";
-import { CarImage } from "../../../modules/cars/typeorm/entities/CarImage";
-import { Category } from "../../../modules/cars/typeorm/entities/Category";
-import { Specification } from "../../../modules/cars/typeorm/entities/Specification";
+import { Car } from "../../../modules/cars/infra/typeorm/entities/Car";
+import { CarImage } from "../../../modules/cars/infra/typeorm/entities/CarImage";
+import { Category } from "../../../modules/cars/infra/typeorm/entities/Category";
+import { Specification } from "../../../modules/cars/infra/typeorm/entities/Specification";
 import { Rental } from "../../../modules/rentals/infra/typeorm/entities/Rental";
 import { CreateCategories1672793250607 } from "./migrations/1672793250607-CreateCategories";
 import { CreateSpecifications1672846730011 } from "./migrations/1672846730011-CreateSpecifications";
@@ -41,7 +41,12 @@ const appDataSource = new DataSource({
 });
 
 function createConnection(host = "database") {
-  return appDataSource.setOptions({ host }).initialize();
+  return appDataSource
+    .setOptions({
+      host: process.env.NODE_ENV === "test" ? "localhost" : host,
+      database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
+    })
+    .initialize();
 }
 
 export { appDataSource, createConnection };

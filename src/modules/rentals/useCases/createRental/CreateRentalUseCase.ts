@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { inject, injectable } from "tsyringe";
 
+import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
@@ -15,7 +16,10 @@ class CreateRentalUseCase {
     private rentalsRepository: IRentalsRepository,
 
     @inject("DayjsDateProvider")
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+
+    @inject("CarsRepository")
+    private carsRepository: ICarsRepository
   ) { }
 
   async execute({
@@ -26,6 +30,8 @@ class CreateRentalUseCase {
     const minimunRentalHours = 24;
 
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id);
+
+    console.log(carUnavailable)
 
     if (carUnavailable) {
       throw new AppError("Car is unavailable!");
@@ -38,7 +44,7 @@ class CreateRentalUseCase {
     }
 
     const dateNow = this.dateProvider.dateNow();
-    const compare_date = this.dateProvider.compareInHours(dateNow, expected_return_date);
+    const compare_date = this.dateProvider.compare(dateNow, expected_return_date, "hours");
 
     if (compare_date < minimunRentalHours) {
       throw new AppError("Rental must be for a minimum of 24 hours!")
@@ -49,6 +55,8 @@ class CreateRentalUseCase {
       user_id,
       expected_return_date
     });
+
+    await this.carsRepository.updateAvailable(car_id, false)
 
     return rental;
   }

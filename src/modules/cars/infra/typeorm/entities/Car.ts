@@ -11,6 +11,8 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+
 import { CarImage } from "./CarImage";
 import { Category } from "./Category";
 import { Specification } from "./Specification";
@@ -58,6 +60,9 @@ class Car {
 
   @OneToMany(() => CarImage, (image) => image.car)
   images: CarImage[];
+
+  @OneToMany(() => Rental, (rental) => rental.car_id)
+  rentals: Rental[];
 
   @CreateDateColumn()
   created_at: Date;

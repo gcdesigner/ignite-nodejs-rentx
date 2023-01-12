@@ -1,10 +1,10 @@
 import { In, Repository } from "typeorm";
 
+import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import {
   ISpecificationsRepository,
   ISpecificationDTO,
 } from "@modules/cars/repositories/ISpecificationsRepository";
-import { Specification } from "@modules/cars/typeorm/entities/Specification";
 import { appDataSource } from "@shared/infra/typeorm/index";
 
 class SpecificationsRepository implements ISpecificationsRepository {

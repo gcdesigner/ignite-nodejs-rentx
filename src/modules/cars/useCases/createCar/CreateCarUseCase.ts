@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { inject, injectable } from "tsyringe";
 
+import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
-import { Car } from "@modules/cars/typeorm/entities/Car";
 import { AppError } from "@shared/errors/AppError";
 
 @injectable()
