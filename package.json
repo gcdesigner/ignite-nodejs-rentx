@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --poll --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "test": "set NODE_ENV=test&&jest --runInBand --detectOpenHandles",
-    "typeorm": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs -r tsconfig-paths/register -d ./src/shared/infra/typeorm/index.ts",
     "migration:c": "ts-node ./src/shared/infra/typeorm/script-migration.ts -d ./src/shared/infra/typeorm/index.ts",
     "migration:r": "yarn typeorm migration:run",
-    "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
+    "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts"
   },
   "keywords": [],
   "author": "",

@@ -9,18 +9,12 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Car } from "@modules/cars/infra/typeorm/entities/Car";
-
-// import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { Car } from "../../../../../modules/cars/infra/typeorm/entities/Car";
 
 @Entity("rentals")
 class Rental {
   @PrimaryGeneratedColumn("uuid")
   id?: string;
-
-  // @ManyToOne(() => User)
-  // @JoinColumn({ name: "user_id", referencedColumnName: "id" })
-  // user: User;
 
   @Column()
   user_id: string;

@@ -11,8 +11,7 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
-
+import { Rental } from "../../../../../modules/rentals/infra/typeorm/entities/Rental";
 import { CarImage } from "./CarImage";
 import { Category } from "./Category";
 import { Specification } from "./Specification";
