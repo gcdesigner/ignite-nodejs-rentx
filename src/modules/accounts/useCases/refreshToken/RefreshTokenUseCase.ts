@@ -38,7 +38,7 @@ class RefreshTokenUseCase {
       expiresIn: auth.refresh_token_expires_in
     })
 
-    const expires_date = this.dateProvider.addDays(auth.refresh_token_expires_date);
+    const expires_date = this.dateProvider.add(auth.refresh_token_expires_date, "days");
 
     await this.usersTokenRepository.create({
       user_id: user_id,

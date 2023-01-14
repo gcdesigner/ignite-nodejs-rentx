@@ -1,4 +1,4 @@
-import dayjs, { UnitType } from "dayjs";
+import dayjs, { ManipulateType, UnitType } from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 import { IDateProvider } from "../IDateProvider";
@@ -20,8 +20,8 @@ class DayjsDateProvider implements IDateProvider {
     return dayjs(date).utc().local().format();
   }
 
-  addDays(days: number): Date {
-    return dayjs().add(days, "days").toDate();
+  add(days: number, unit: ManipulateType): Date {
+    return dayjs().add(days, unit).toDate();
   }
 }
 

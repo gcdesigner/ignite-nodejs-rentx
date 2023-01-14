@@ -4,8 +4,9 @@ import { sign } from "jsonwebtoken";
 import { injectable, inject } from "tsyringe";
 
 import { auth } from "@config/auth";
-import { UsersTokenRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokenRepository.1";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import { IUsersTokenRepository } from "@modules/accounts/repositories/IUsersTokenRepository";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
@@ -31,10 +32,10 @@ class AuthenticateUserUseCase {
     private usersRepository: IUsersRepository,
 
     @inject("UsersTokenRepository")
-    private usersTokenRepository: UsersTokenRepository,
+    private usersTokenRepository: IUsersTokenRepository,
 
     @inject("DayjsDateProvider")
-    private dateProvider: DayjsDateProvider
+    private dateProvider: IDateProvider
   ) { }
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -56,7 +57,7 @@ class AuthenticateUserUseCase {
       expiresIn: refresh_token_expires_in
     })
 
-    const expires_date_refresh_token = this.dateProvider.addDays(refresh_token_expires_date)
+    const expires_date_refresh_token = this.dateProvider.add(refresh_token_expires_date, "days")
 
     await this.usersTokenRepository.create({
       user_id: user.id,
