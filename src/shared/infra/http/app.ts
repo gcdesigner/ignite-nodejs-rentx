@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import * as dotenv from "dotenv";
 import express, { NextFunction, Response, Request } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
@@ -9,6 +10,10 @@ import { createConnection } from "@shared/infra/typeorm/index";
 
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 createConnection()
   .then(() => console.log("Database initialized!"))
